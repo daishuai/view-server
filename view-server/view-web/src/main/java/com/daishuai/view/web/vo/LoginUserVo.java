@@ -1,5 +1,6 @@
 package com.daishuai.view.web.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -15,6 +16,7 @@ public class LoginUserVo {
 
     private String username;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
     private String phone;
