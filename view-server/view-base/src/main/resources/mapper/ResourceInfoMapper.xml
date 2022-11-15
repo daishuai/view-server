@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.daishuai.view.mapper.ResourceInfoMapper">
+
+    <select id="queryUserResources" resultType="com.daishuai.view.entity.ResourceInfoEntity">
+        select r1.*
+        from role_resource rr
+                 left join resource_info r1 on rr.resource_id = r1.id
+                 left join role_info r2 on rr.role_sign = r2.sign
+                 left join user_role ur on r2.sign = ur.role_sign
+        where ur.username = #{username}
+    </select>
+</mapper>

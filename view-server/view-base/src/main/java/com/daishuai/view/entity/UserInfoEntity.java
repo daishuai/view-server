@@ -11,7 +11,7 @@ import java.util.Date;
  * @createTime 2022-11-07 21:47:06
  */
 @Data
-public class UserInfoEntity {
+public class UserInfoEntity extends BaseEntity{
 
     private String username;
 
@@ -27,11 +27,6 @@ public class UserInfoEntity {
 
     private String address;
 
-    private Date createdTime;
+    private Boolean status;
 
-    private String createdBy;
-
-    private Date updatedTime;
-
-    private String updatedBy;
 }
