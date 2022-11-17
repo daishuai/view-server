@@ -2,12 +2,14 @@ package com.daishuai.view.web.service.impl;
 
 import com.daishuai.view.entity.ResourceInfoEntity;
 import com.daishuai.view.mapper.ResourceInfoMapper;
+import com.daishuai.view.web.dto.ResourceInfoDto;
 import com.daishuai.view.web.service.ResourceInfoService;
 import com.daishuai.view.web.vo.ResourceInfoVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -43,6 +45,15 @@ public class ResourceInfoServiceImpl implements ResourceInfoService {
         List<ResourceInfoVo> resourceTree = resourcesInfoMap.get(ROOT);
         this.buildResourceTree(resourceTree, resourcesInfoMap);
         return resourceTree;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public boolean addResource(ResourceInfoDto resourceInfoDto) {
+        ResourceInfoEntity entity = new ResourceInfoEntity();
+        BeanUtils.copyProperties(resourceInfoDto, entity);
+        int row = resourceInfoMapper.insertResource(entity);
+        return row == 1;
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.daishuai.view.web.service;
 
+import com.daishuai.view.web.dto.ResourceInfoDto;
 import com.daishuai.view.web.vo.ResourceInfoVo;
 
 import java.util.List;
@@ -19,4 +20,12 @@ public interface ResourceInfoService {
      * @return  资源树
      */
     List<ResourceInfoVo> queryResourceAsTree(String username);
+
+    /**
+     * 新增资源信息
+     *
+     * @param resourceInfoDto   资源信息
+     * @return  true or false
+     */
+    boolean addResource(ResourceInfoDto resourceInfoDto);
 }

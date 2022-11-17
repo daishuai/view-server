@@ -20,4 +20,12 @@ public interface ResourceInfoMapper {
      * @return  资源列表
      */
     List<ResourceInfoEntity> queryUserResources(@Param("username") String username);
+
+    /**
+     * 新增资源信息
+     *
+     * @param resourceInfo  资源信息
+     * @return  新增条数
+     */
+    int insertResource(ResourceInfoEntity resourceInfo);
 }
