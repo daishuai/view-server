@@ -1,6 +1,7 @@
 package com.daishuai.view.delayqueue.processor;
 
 import com.alibaba.fastjson.JSON;
+import com.daishuai.view.delayqueue.enums.RedisDelayQueueEnums;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +16,8 @@ import org.springframework.stereotype.Component;
 public class OrderPaymentTimeout implements RedisDelayQueueProcessor {
 
     @Override
-    public String queueCode() {
-        return "OrderPaymentTimeout";
+    public RedisDelayQueueEnums queue() {
+        return RedisDelayQueueEnums.ORDER_PAYMENT_TIMEOUT;
     }
 
     @Override

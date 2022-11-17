@@ -1,5 +1,7 @@
 package com.daishuai.view.delayqueue.processor;
 
+import com.daishuai.view.delayqueue.enums.RedisDelayQueueEnums;
+
 /**
  * @author Daishuai
  * @version 1.0.0
@@ -8,7 +10,7 @@ package com.daishuai.view.delayqueue.processor;
  */
 public interface RedisDelayQueueProcessor {
 
-    String queueCode();
+    RedisDelayQueueEnums queue();
 
     void process(Object t);
 }

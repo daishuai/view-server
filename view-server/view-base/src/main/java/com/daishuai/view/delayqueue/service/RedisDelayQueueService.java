@@ -26,7 +26,7 @@ public class RedisDelayQueueService {
     @Resource
     private RedissonClient redissonClient;
 
-    public <T> boolean addDelayQueue(T value, long delay, TimeUnit timeUnit, String queueCode) {
+    public boolean addDelayQueue(Object value, long delay, TimeUnit timeUnit, String queueCode) {
         if (StringUtils.isBlank(queueCode) || Objects.isNull(value)) {
             return false;
         }
@@ -36,13 +36,12 @@ public class RedisDelayQueueService {
         return true;
     }
 
-    public <T> T getDelayQueue(String queueCode) {
+    public Object getDelayQueue(String queueCode) throws InterruptedException {
         if (StringUtils.isBlank(queueCode)) {
             return null;
         }
         RBlockingQueue<Object> blockingQueue = redissonClient.getBlockingQueue(queueCode);
-        T value = (T) blockingQueue.poll();
-        return value;
+        return blockingQueue.take();
     }
 
     public boolean removeDelayQueue(Object obj, String queueCode) {

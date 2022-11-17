@@ -33,10 +33,17 @@ public class RedisDelayQueueRunner implements CommandLineRunner {
             return;
         }
         new Thread(() -> {
-            for (RedisDelayQueueProcessor redisDelayQueueProcessor : redisDelayQueueProcessors) {
-                Object value = redisDelayQueueService.getDelayQueue(redisDelayQueueProcessor.queueCode());
-                if (value != null) {
-                    redisDelayQueueProcessor.process(value);
+            while (true) {
+                for (RedisDelayQueueProcessor redisDelayQueueProcessor : redisDelayQueueProcessors) {
+                    Object value = null;
+                    try {
+                        value = redisDelayQueueService.getDelayQueue(redisDelayQueueProcessor.queue().queueCode());
+                    } catch (InterruptedException e) {
+                        log.error("延迟队列被中断: {}", e.getMessage(), e);
+                    }
+                    if (value != null) {
+                        redisDelayQueueProcessor.process(value);
+                    }
                 }
             }
         }, "delay-queue-monitor-").start();
