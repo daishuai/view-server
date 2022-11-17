@@ -25,7 +25,7 @@ public class RedisDelayQueueRunner implements CommandLineRunner {
     private RedisDelayQueueService redisDelayQueueService;
 
     @Autowired(required = false)
-    private List<RedisDelayQueueProcessor<?>> redisDelayQueueProcessors;
+    private List<RedisDelayQueueProcessor> redisDelayQueueProcessors;
 
     @Override
     public void run(String... args) throws Exception {
@@ -33,7 +33,7 @@ public class RedisDelayQueueRunner implements CommandLineRunner {
             return;
         }
         new Thread(() -> {
-            for (RedisDelayQueueProcessor<?> redisDelayQueueProcessor : redisDelayQueueProcessors) {
+            for (RedisDelayQueueProcessor redisDelayQueueProcessor : redisDelayQueueProcessors) {
                 Object value = redisDelayQueueService.getDelayQueue(redisDelayQueueProcessor.queueCode());
                 if (value != null) {
                     redisDelayQueueProcessor.process(value);

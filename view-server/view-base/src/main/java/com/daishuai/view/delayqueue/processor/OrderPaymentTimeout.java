@@ -4,8 +4,6 @@ import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
-
 /**
  * @author Daishuai
  * @version 1.0.0
@@ -14,7 +12,7 @@ import java.util.Map;
  */
 @Slf4j
 @Component
-public class OrderPaymentTimeout implements RedisDelayQueueProcessor<Map<String, Object>> {
+public class OrderPaymentTimeout implements RedisDelayQueueProcessor {
 
     @Override
     public String queueCode() {
@@ -22,7 +20,7 @@ public class OrderPaymentTimeout implements RedisDelayQueueProcessor<Map<String,
     }
 
     @Override
-    public void process(Map<String, Object> map) {
+    public void process(Object map) {
         log.info("订单支付超时通知: {}", JSON.toJSONString(map));
     }
 }

@@ -6,9 +6,9 @@ package com.daishuai.view.delayqueue.processor;
  * @description Redis延迟队列消息处理器
  * @createTime 2022年11月17日 17:45:00
  */
-public interface RedisDelayQueueProcessor<T> {
+public interface RedisDelayQueueProcessor {
 
     String queueCode();
 
-    void process(T t);
+    void process(Object t);
 }
