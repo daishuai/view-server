@@ -8,5 +8,7 @@ package com.daishuai.view.delayqueue.processor;
  */
 public interface RedisDelayQueueProcessor<T> {
 
+    String queueCode();
+
     void process(T t);
 }

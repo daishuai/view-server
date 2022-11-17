@@ -3,6 +3,7 @@ package com.daishuai.view.delayqueue;
 import com.daishuai.view.delayqueue.processor.RedisDelayQueueProcessor;
 import com.daishuai.view.delayqueue.service.RedisDelayQueueService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -28,6 +29,16 @@ public class RedisDelayQueueRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
+        if (CollectionUtils.isEmpty(redisDelayQueueProcessors)) {
+            return;
+        }
+        new Thread(() -> {
+            for (RedisDelayQueueProcessor<?> redisDelayQueueProcessor : redisDelayQueueProcessors) {
+                Object value = redisDelayQueueService.getDelayQueue(redisDelayQueueProcessor.queueCode());
+                if (value != null) {
+                    redisDelayQueueProcessor.process(value);
+                }
+            }
+        }, "delay-queue-monitor-").start();
     }
 }

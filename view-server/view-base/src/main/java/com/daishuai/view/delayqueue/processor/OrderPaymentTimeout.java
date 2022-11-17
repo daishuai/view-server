@@ -17,6 +17,11 @@ import java.util.Map;
 public class OrderPaymentTimeout implements RedisDelayQueueProcessor<Map<String, Object>> {
 
     @Override
+    public String queueCode() {
+        return "OrderPaymentTimeout";
+    }
+
+    @Override
     public void process(Map<String, Object> map) {
         log.info("订单支付超时通知: {}", JSON.toJSONString(map));
     }
