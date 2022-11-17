@@ -31,11 +31,18 @@
         <commons-collections4.version>4.4</commons-collections4.version>
         <mysql.version>8.0.22</mysql.version>
         <swagger2.version>2.7.0</swagger2.version>
+        <redisson-start.version>3.18.0</redisson-start.version>
     </properties>
 
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson-start.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.alibaba</groupId>
