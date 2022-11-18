@@ -10,6 +10,7 @@ CREATE TABLE `resource_info`  (
   `component` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '地址',
   `parent` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '父级资源',
   `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '名称',
+  `sort` tinyint(255) DEFAULT NULL COMMENT '显示顺序',
   `hide_in_bread` bit(1) NULL DEFAULT NULL,
   `hide_in_menu` bit(1) NULL DEFAULT NULL,
   `status` bit(1) NULL DEFAULT NULL COMMENT '有效性',
@@ -23,7 +24,7 @@ CREATE TABLE `resource_info`  (
 -- ----------------------------
 -- Records of resource_info
 -- ----------------------------
-INSERT INTO `resource_info` VALUES (1, 'doc', '', 'ios-book', NULL, '-1', '文档', b'0', b'0', b'1', '2022-11-14 13:12:52', 'admin', '2022-11-14 13:13:01', 'admin');
+INSERT INTO `resource_info` VALUES (1, 'doc', '', 'ios-book', NULL, '-1', '文档', 1, b'0', b'0', b'1', '2022-11-14 13:12:52', 'admin', '2022-11-14 13:13:01', 'admin');
 
 -- ----------------------------
 -- Table structure for role_info

@@ -19,6 +19,8 @@ public class ResourceInfoDto {
 
     private String title;
 
+    private Integer sort;
+
     private String component;
 
     private String parent;

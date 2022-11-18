@@ -1,7 +1,5 @@
 package com.daishuai.view.web.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.daishuai.view.model.ResponseMessage;
 import com.daishuai.view.web.dto.LoginUserDto;
 import com.daishuai.view.web.service.ResourceInfoService;
@@ -12,9 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author admin
@@ -47,19 +43,9 @@ public class AuthController {
     }
 
     @GetMapping(value = "/resources_as_tree")
-    public ResponseMessage<List<Map<String, Object>>> resourcesAsTree(@RequestParam("username") String username) {
-        log.info("username: {}", username);
-        String jsonStr = "{\n" +
-                "    path: '',\n" +
-                "    name: 'doc',\n" +
-                "    meta: {\n" +
-                "      title: '文档',\n" +
-                "      href: 'https://lison16.github.io/iview-admin-doc/#/',\n" +
-                "      icon: 'ios-book'\n" +
-                "    }\n" +
-                "  }";
-        JSONObject json = JSON.parseObject(jsonStr);
-        return ResponseMessage.ok(Collections.singletonList(json));
+    public ResponseMessage<List<ResourceInfoVo>> resourcesAsTree(@RequestParam("username") String username) {
+        List<ResourceInfoVo> result = resourceInfoServiceImpl.queryResourceAsTree(username);
+        return ResponseMessage.ok(result);
     }
 
     @GetMapping(value = "/resource_tree_me")

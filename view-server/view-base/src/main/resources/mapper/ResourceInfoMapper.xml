@@ -9,11 +9,12 @@
                  left join role_info r2 on rr.role_sign = r2.sign
                  left join user_role ur on r2.sign = ur.role_sign
         where ur.username = #{username}
+        order by r1.parent, r1.sort
     </select>
 
     <!--新增资源信息-->
     <insert id="insertResource">
-        insert into resource_info (name, path, icon, component, parent, title, hide_in_bread, hide_in_menu, status, created_time, created_by, updated_time, updated_by)
-        values (#{name}, #{path}, #{icon}, #{component}, #{parent}, #{title}, #{hideInBread}, #{hideInMenu}, #{status}, now(), #{createdBy}, now(), #{updated_by})
+        insert into resource_info (name, path, icon, component, parent, title, sort, hide_in_bread, hide_in_menu, status, created_time, created_by, updated_time, updated_by)
+        values (#{name}, #{path}, #{icon}, #{component}, #{parent}, #{title}, #{sort}, #{hideInBread}, #{hideInMenu}, #{status}, now(), #{createdBy}, now(), #{updatedBy})
     </insert>
 </mapper>

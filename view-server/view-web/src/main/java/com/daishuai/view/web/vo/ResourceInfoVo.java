@@ -19,19 +19,27 @@ public class ResourceInfoVo {
 
     private String path;
 
-    private String icon;
-
-    private String title;
+    private Integer sort;
 
     private String component;
 
     private String parent;
 
-    private Boolean hideInBread;
-
-    private Boolean hideInMenu;
-
     private Boolean status;
 
+    private Meta meta;
+
     private List<ResourceInfoVo> children;
+
+    @Data
+    public static class Meta {
+
+        private String title;
+
+        private Boolean hideInMenu;
+
+        private Boolean hideInBread;
+
+        private String icon;
+    }
 }

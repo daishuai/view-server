@@ -19,6 +19,8 @@ public class ResourceInfoEntity extends BaseEntity {
 
     private String title;
 
+    private Integer sort;
+
     private String component;
 
     private String parent;

@@ -39,7 +39,10 @@ public class ResourceInfoServiceImpl implements ResourceInfoService {
         }
         Map<String, List<ResourceInfoVo>> resourcesInfoMap = resources.stream().map(entity -> {
             ResourceInfoVo infoVo = new ResourceInfoVo();
+            ResourceInfoVo.Meta meta = new ResourceInfoVo.Meta();
             BeanUtils.copyProperties(entity, infoVo);
+            BeanUtils.copyProperties(entity, meta);
+            infoVo.setMeta(meta);
             return infoVo;
         }).collect(Collectors.groupingBy(ResourceInfoVo::getParent));
         List<ResourceInfoVo> resourceTree = resourcesInfoMap.get(ROOT);
