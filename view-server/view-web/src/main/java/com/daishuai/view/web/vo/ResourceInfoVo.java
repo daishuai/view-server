@@ -36,6 +36,12 @@ public class ResourceInfoVo {
 
         private String title;
 
+        private Boolean notCache;
+
+        private Boolean showAlways;
+
+        private String href;
+
         private Boolean hideInMenu;
 
         private Boolean hideInBread;

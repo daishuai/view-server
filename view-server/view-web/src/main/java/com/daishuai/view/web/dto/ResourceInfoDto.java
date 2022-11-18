@@ -25,6 +25,12 @@ public class ResourceInfoDto {
 
     private String parent;
 
+    private Boolean notCache;
+
+    private Boolean showAlways;
+
+    private String href;
+
     private Boolean hideInBread;
 
     private Boolean hideInMenu;
