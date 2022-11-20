@@ -39,6 +39,8 @@ public class AuthController {
     @GetMapping(value = "/getUserInfo")
     public ResponseMessage<LoginUserVo> getUserInfo(@RequestParam("token") String token) {
         LoginUserVo result = userInfoServiceImpl.queryUserByUsername(token);
+        List<ResourceInfoVo> resources = resourceInfoServiceImpl.queryResourceAsTree(token);
+        result.setResources(resources);
         return ResponseMessage.ok(result);
     }
 

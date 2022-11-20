@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author admin
@@ -26,5 +27,8 @@ public class LoginUserVo {
     private String email;
 
     private String address;
+
+    private List<ResourceInfoVo> resources;
+
 
 }
